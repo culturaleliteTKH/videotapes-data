@@ -1,0 +1,405 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://videotapes.io/schema/sleeve-2.json",
+  "title": "videotapes.io sleeve (v2)",
+  "type": "object",
+  "description": "One scanned VHS sleeve: a release (or a fan-made cover) of one film, with its tags and image links.",
+  "required": [
+    "id",
+    "tmdbId",
+    "layout",
+    "region",
+    "flags",
+    "width",
+    "height",
+    "spreadUrl",
+    "thumbnails",
+    "folds",
+    "updatedAt"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Stable ID. Never reused; kept through edits."
+    },
+    "tmdbId": {
+      "type": "integer",
+      "description": "The film this sleeve belongs to (TMDb ID)."
+    },
+    "kind": {
+      "enum": [
+        "release",
+        "custom"
+      ],
+      "description": "release: a real video release. custom: fan-made artwork, only returned when asked for (custom=include or custom=fallback)."
+    },
+    "layout": {
+      "enum": [
+        "spread",
+        "front_only",
+        "unknown"
+      ],
+      "description": "spread: the whole wrap, read back | spine | front. front_only: just the front. unknown: not yet worked out."
+    },
+    "region": {
+      "anyOf": [
+        {
+          "enum": [
+            "US",
+            "UK",
+            "EU",
+            "JP",
+            "Other"
+          ],
+          "description": "The market group the sleeve was printed for. Null for fan-made covers."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "regionCountry": {
+      "anyOf": [
+        {
+          "type": "string",
+          "description": "The country within the region, as a name (\"Germany\", \"Finland\"), when known."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "videoSystem": {
+      "anyOf": [
+        {
+          "enum": [
+            "NTSC",
+            "PAL",
+            "SECAM"
+          ],
+          "description": "The tape's TV system."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "label": {
+      "anyOf": [
+        {
+          "type": "string",
+          "description": "The video label or distributor as printed (\"Palace Video\", \"Thorn EMI\")."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "tapeYear": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "description": "Year of this video release (often the copyright line), not the film's year."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "catalogueNumber": {
+      "anyOf": [
+        {
+          "type": "string",
+          "description": "The label's catalogue number as printed."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "releaseType": {
+      "anyOf": [
+        {
+          "enum": [
+            "rental",
+            "sell_through",
+            "ex_rental"
+          ],
+          "description": "rental, sell_through (retail) or ex_rental."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "caseType": {
+      "anyOf": [
+        {
+          "enum": [
+            "slipcase",
+            "clamshell",
+            "big_box"
+          ],
+          "description": "The packaging: a card slipcase, a plastic clamshell, or a big box."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "certificate": {
+      "anyOf": [
+        {
+          "type": "string",
+          "description": "The age rating as printed (\"18\", \"FSK 16\", \"R\")."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "language": {
+      "anyOf": [
+        {
+          "type": "string",
+          "description": "The language of the sleeve's text, as a name (\"German\")."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "titleOnSleeve": {
+      "anyOf": [
+        {
+          "type": "string",
+          "description": "The title as printed on the sleeve, in its own language and script. The film's title is TMDb's English (US) one."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "artist": {
+      "anyOf": [
+        {
+          "type": "string",
+          "description": "Fan-made covers only: who made it, if known."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "replacementWanted": {
+      "type": "boolean",
+      "description": "A better scan is wanted: flags.damage or flags.lowQuality."
+    },
+    "quality": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "deprecated": true,
+          "description": "Retired: always null. Use flags.lowQuality."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "flags": {
+      "type": "object",
+      "description": "What's wrong with this scan, if anything.",
+      "required": [
+        "sticker",
+        "damage",
+        "watermark"
+      ],
+      "properties": {
+        "sticker": {
+          "type": "boolean",
+          "description": "A shop or price sticker on the artwork."
+        },
+        "damage": {
+          "type": "boolean",
+          "description": "Damaged or incomplete scan."
+        },
+        "watermark": {
+          "type": "boolean",
+          "description": "A watermark over the artwork."
+        },
+        "lowQuality": {
+          "type": "boolean",
+          "description": "Low resolution or a poor photo."
+        }
+      }
+    },
+    "width": {
+      "type": "integer",
+      "description": "The spread image's width in pixels."
+    },
+    "height": {
+      "type": "integer",
+      "description": "The spread image's height in pixels."
+    },
+    "spreadUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "The whole cleaned-up scan on the public CDN (no token needed)."
+    },
+    "thumbnails": {
+      "type": "object",
+      "description": "Smaller copies of the spread on the CDN, 400 and 1,200 px wide.",
+      "properties": {
+        "w400": {
+          "type": "string",
+          "format": "uri"
+        },
+        "w1200": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "display": {
+      "type": "object",
+      "description": "4K versions of the spread and the front, with their pixel sizes. URLs are API paths (send the token) that redirect to the CDN. AVIF for apps that decode it, WebP otherwise.",
+      "properties": {
+        "spread": {
+          "$ref": "#/$defs/DisplayImage"
+        },
+        "front": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DisplayImage"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "folds": {
+      "anyOf": [
+        {
+          "type": "object",
+          "description": "Where the spine starts and ends, as fractions of the spread's width. Null unless the layout is spread.",
+          "properties": {
+            "left": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Between the back and the spine."
+            },
+            "right": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Between the spine and the front."
+            },
+            "source": {
+              "enum": [
+                "manual",
+                "estimated"
+              ],
+              "description": "Marked by a person, or estimated from the case's proportions."
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last change to this sleeve's tags or image."
+    },
+    "sha256": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "description": "SHA-256 of the original scan file, for spotting the same file again."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "phash": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$",
+          "description": "64-bit difference hash of the image, for spotting the same artwork scanned or saved differently."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "dateAdded": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the sleeve was added."
+    },
+    "lookalikeGroup": {
+      "anyOf": [
+        {
+          "type": "string",
+          "description": "Sleeves sharing this value look alike (the same artwork in several releases): a browser can show one and link to the rest."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "matchConfidence": {
+      "anyOf": [
+        {
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "none"
+          ],
+          "description": "How sure the match to the film is, for sleeves that weren't checked by hand."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "DisplayImage": {
+      "type": "object",
+      "required": [
+        "width",
+        "height",
+        "avif",
+        "webp"
+      ],
+      "properties": {
+        "width": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "avif": {
+          "type": "string",
+          "description": "API path; redirects to the CDN."
+        },
+        "webp": {
+          "type": "string",
+          "description": "API path; redirects to the CDN."
+        }
+      }
+    }
+  }
+}

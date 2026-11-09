@@ -1,0 +1,58 @@
+{
+  "id": "d683c802-e7db-4292-aab0-42f560644069",
+  "tmdbId": 32450,
+  "kind": "release",
+  "layout": "spread",
+  "region": "UK",
+  "regionCountry": "United Kingdom",
+  "videoSystem": "PAL",
+  "label": "PARAMOUNT",
+  "tapeYear": null,
+  "catalogueNumber": null,
+  "releaseType": null,
+  "caseType": "clamshell",
+  "certificate": null,
+  "language": "English",
+  "titleOnSleeve": "BRAIN DONORS",
+  "artist": null,
+  "replacementWanted": false,
+  "quality": null,
+  "flags": {
+    "sticker": false,
+    "damage": false,
+    "watermark": false,
+    "lowQuality": false
+  },
+  "width": 1200,
+  "height": 873,
+  "spreadUrl": "https://covers.videotapes.io/sleeves/d683c802-e7db-4292-aab0-42f560644069/ccdb4821/spread.jpg",
+  "thumbnails": {
+    "w400": "https://covers.videotapes.io/sleeves/d683c802-e7db-4292-aab0-42f560644069/ccdb4821/thumb400.webp",
+    "w1200": "https://covers.videotapes.io/sleeves/d683c802-e7db-4292-aab0-42f560644069/ccdb4821/thumb1200.webp"
+  },
+  "display": {
+    "spread": {
+      "width": 1200,
+      "height": 873,
+      "avif": "/api/v1/sleeves/d683c802-e7db-4292-aab0-42f560644069/image?part=spread&size=display&format=avif",
+      "webp": "/api/v1/sleeves/d683c802-e7db-4292-aab0-42f560644069/image?part=spread&size=display&format=webp"
+    },
+    "front": {
+      "width": 539,
+      "height": 873,
+      "avif": "/api/v1/sleeves/d683c802-e7db-4292-aab0-42f560644069/image?part=front&size=display&format=avif",
+      "webp": "/api/v1/sleeves/d683c802-e7db-4292-aab0-42f560644069/image?part=front&size=display&format=webp"
+    }
+  },
+  "folds": {
+    "left": 0.449438202247191,
+    "right": 0.550561797752809,
+    "source": "estimated"
+  },
+  "updatedAt": "2026-11-09T20:19:21.107Z",
+  "sha256": "c0026a31026d5bff00e5bb2d86e1870e506647d5d6c662cc24d036ad0a04e8bf",
+  "phash": "5429acc686af0f87",
+  "dateAdded": "2026-11-07T09:24:01.320Z",
+  "lookalikeGroup": null,
+  "matchConfidence": "high"
+}

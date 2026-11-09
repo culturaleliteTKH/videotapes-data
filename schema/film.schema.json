@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://videotapes.io/schema/film-2.json",
+  "title": "videotapes.io film (v2)",
+  "type": "object",
+  "description": "A film and its approved sleeves. Films are keyed by TMDb ID; fetch anything else about the film (overview, genres, cast) from TMDb.",
+  "required": [
+    "tmdbId",
+    "title",
+    "sleeves"
+  ],
+  "properties": {
+    "tmdbId": {
+      "type": "integer",
+      "description": "The film's ID on The Movie Database (themoviedb.org): the key everything here hangs on."
+    },
+    "title": {
+      "type": "string",
+      "description": "The film's English (US) title on TMDb."
+    },
+    "year": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "description": "The film's release year."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "imdbId": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^tt\\d+$",
+          "description": "The film's IMDb ID."
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "sleeves": {
+      "type": "array",
+      "items": {
+        "$ref": "sleeve-2.json"
+      },
+      "description": "Approved sleeves: releases first, then fan-made ones if asked for; newest first within each."
+    },
+    "licence": {
+      "type": "object",
+      "description": "The metadata is CC0; the artwork belongs to its rights holders.",
+      "properties": {
+        "metadata": {
+          "type": "string",
+          "const": "CC0-1.0"
+        },
+        "artwork": {
+          "type": "string"
+        }
+      }
+    },
+    "attribution": {
+      "type": "string",
+      "description": "How to credit videotapes.io (appreciated, not required for CC0 metadata)."
+    }
+  }
+}
