@@ -16,6 +16,7 @@ so on. This repo describes that data so anyone can use it.
 | [`docs/api.md`](docs/api.md) | How to read the data live: endpoints, limits, images |
 | [`docs/images.md`](docs/images.md) | Using the scans: spreads, folds, sizes |
 | [`CHANGELOG.md`](CHANGELOG.md) | How the data model has changed |
+| [`TERMS.md`](TERMS.md) | **Using the data and the images**: what's free, what isn't, takedowns |
 
 **Data downloads** (the whole catalogue as files) will be published here once the first release is ready. Until then,
 the [API](docs/api.md) serves the same records live.
@@ -49,6 +50,8 @@ Fan-made covers (`kind: custom`) are kept apart from real releases and are only 
 Everything about the film itself (plot, genres, cast, posters) is TMDb's: look it up there by `tmdbId`.
 
 ## Licences
+
+In short: the data is free; the images are linked, not licensed. The full terms are in [`TERMS.md`](TERMS.md).
 
 - **Metadata: [CC0 1.0](LICENSE).** No rights reserved: copy it, mirror it, build on it, commercially or not. Credit
   ("data from videotapes.io") is appreciated, not required.
